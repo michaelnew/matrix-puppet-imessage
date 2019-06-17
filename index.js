@@ -147,6 +147,11 @@ class App extends MatrixPuppetBridgeBase {
     });
   }
 
+  sendReadReceiptAsPuppetToThirdPartyRoomWithId() {
+    //this does nothing but avoiding exceptions :)
+  }
+
+
   handleMatrixUserBangCommand(bangCmd, matrixMsgEvent) {
     const { bangcommand, command, body } = bangCmd;
     const { room_id } = matrixMsgEvent;
@@ -181,6 +186,7 @@ new Cli({
       reg.setAppServiceToken(AppServiceRegistration.generateToken());
       reg.setSenderLocalpart("imessagebot");
       reg.addRegexPattern("users", "@imessage_.*", true);
+      reg.addRegexPattern("aliases", "#imessage_.*", true);
       callback(reg);
     }).catch(err=>{
       console.error(err.message);
